@@ -1,18 +1,10 @@
 # PHP Labs - Windows Setup Script
-# Запускати в PowerShell від імені адміністратора
+# Can be run in regular PowerShell (no admin required)
 
 Write-Host "===================================" -ForegroundColor Cyan
 Write-Host "  PHP Labs - Environment Setup" -ForegroundColor Cyan
 Write-Host "===================================" -ForegroundColor Cyan
 Write-Host ""
-
-# Check for administrator rights
-$isAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
-if (-not $isAdmin) {
-    Write-Host "ERROR: Run PowerShell as administrator!" -ForegroundColor Red
-    Write-Host "Right-click on PowerShell -> 'Run as Administrator'" -ForegroundColor Yellow
-    exit 1
-}
 
 # Функція перевірки команди
 function Test-Command {
@@ -20,23 +12,22 @@ function Test-Command {
     return [bool](Get-Command -Name $Command -ErrorAction SilentlyContinue)
 }
 
-# Install Chocolatey
-function Install-Chocolatey {
-    Write-Host ">>> Checking Chocolatey..." -ForegroundColor Yellow
+# Install Scoop
+function Install-Scoop {
+    Write-Host ">>> Checking Scoop..." -ForegroundColor Yellow
 
-    if (Test-Command "choco") {
-        Write-Host "Chocolatey already installed: $(choco --version)" -ForegroundColor Green
+    if (Test-Command "scoop") {
+        Write-Host "Scoop already installed: $(scoop --version)" -ForegroundColor Green
     }
     else {
-        Write-Host "Installing Chocolatey..." -ForegroundColor Yellow
-        Set-ExecutionPolicy Bypass -Scope Process -Force
-        [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
-        Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+        Write-Host "Installing Scoop..." -ForegroundColor Yellow
+        Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
+        Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
 
         # Update PATH
         $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
 
-        Write-Host "Chocolatey installed!" -ForegroundColor Green
+        Write-Host "Scoop installed!" -ForegroundColor Green
     }
     Write-Host ""
 }
@@ -49,8 +40,7 @@ function Install-PHP {
         Write-Host "PHP already installed: $(php -v | Select-Object -First 1)" -ForegroundColor Green
     }
     else {
-        choco install php -y
-        refreshenv
+        scoop install php
         Write-Host "PHP installed!" -ForegroundColor Green
     }
     Write-Host ""
@@ -64,8 +54,7 @@ function Install-Composer {
         Write-Host "Composer already installed: $(composer --version)" -ForegroundColor Green
     }
     else {
-        choco install composer -y
-        refreshenv
+        scoop install composer
         Write-Host "Composer installed!" -ForegroundColor Green
     }
     Write-Host ""
@@ -79,8 +68,7 @@ function Install-MySQL {
         Write-Host "MySQL already installed: $(mysql --version)" -ForegroundColor Green
     }
     else {
-        choco install mysql -y
-        refreshenv
+        scoop install mysql
         Write-Host "MySQL installed!" -ForegroundColor Green
     }
     Write-Host ""
@@ -95,8 +83,7 @@ function Install-Git {
     }
     else {
         Write-Host "Installing Git..." -ForegroundColor Yellow
-        choco install git -y
-        refreshenv
+        scoop install git
         Write-Host "Git installed!" -ForegroundColor Green
     }
     Write-Host ""
@@ -106,7 +93,7 @@ function Install-Git {
 Write-Host "Starting installation..." -ForegroundColor Cyan
 Write-Host ""
 
-Install-Chocolatey
+Install-Scoop
 Install-PHP
 Install-Composer
 Install-MySQL

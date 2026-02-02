@@ -8,7 +8,7 @@
 
 | Скрипт        | Платформа   | Опис                                                                                  |
 | ------------- | ----------- | ------------------------------------------------------------------------------------- |
-| `install.ps1` | Windows     | PowerShell скрипт. Використовує Chocolatey для встановлення PHP, Composer, MySQL, Git |
+| `install.ps1` | Windows     | PowerShell скрипт. Використовує Scoop для встановлення PHP, Composer, MySQL, Git     |
 | `install.sh`  | macOS/Linux | Bash скрипт. Використовує Homebrew (macOS) або apt/dnf (Linux)                        |
 
 ---
@@ -28,10 +28,7 @@
 
 ### Автоматично (скрипт PowerShell)
 
-1. Відкрийте PowerShell **від імені адміністратора**:
-   - Натисніть `Win + S` і введіть `PowerShell`.
-   - У списку результатів знайдіть "Windows PowerShell".
-   - Клацніть правою кнопкою миші та виберіть **Запустити від імені адміністратора** (Run as administrator).
+1. Відкрийте PowerShell (не обов'язково від імені адміністратора):
 
 2. Дозвольте виконання скриптів:
 
@@ -68,20 +65,19 @@ chmod +x install.sh
 ./install.sh
 ```
 
-### Варіант 2: Chocolatey
+### Варіант 2: Scoop
 
-1. Встановіть [Chocolatey](https://chocolatey.org/install) (в PowerShell як адміністратор):
+1. Встановіть [Scoop](https://scoop.sh/) (в PowerShell):
 
 ```powershell
-Set-ExecutionPolicy Bypass -Scope Process -Force
-[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
-iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
+Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
 ```
 
 1. Встановіть PHP, Composer та MySQL:
 
 ```powershell
-choco install php composer mysql -y
+scoop install php composer mysql git
 ```
 
 1. Перезапустіть термінал та перевірте:
@@ -90,6 +86,7 @@ choco install php composer mysql -y
 php -v
 composer -V
 mysql --version
+git --version
 ```
 
 ### Варіант 3: XAMPP
