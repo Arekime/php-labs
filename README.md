@@ -14,19 +14,24 @@
 
 ## Швидкий старт
 
-Детальні інструкції встановлення для Windows, macOS та Linux: [setup/README.md](setup/README.md)
 
-### macOS / Linux
+Склонуйте репозиторій:
 
 ```bash
-cd setup
-chmod +x install.sh
-./install.sh
+git clone https://github.com/victorchei/php-labs.git
+cd php-labs
+# Налаштуйте git для цього репозиторію:
+git config user.name "Прізвище Ім'я"
+git config user.email "your.email@ztu.edu.ua"
 ```
 
-### Windows
+Встановіть залежності автоматично:
 
-Використовуйте WSL або Chocolatey — див. [setup/README.md](setup/README.md)
+```bash
+./setup/install.sh  # macOS / Linux
+```
+
+Детальні інструкції встановлення для Windows, macOS та Linux: [setup/README.md](setup/README.md)
 
 ## Лабораторні роботи
 
@@ -50,11 +55,11 @@ chmod +x install.sh
 
 ### Неймінг гілок
 
-| Формат | Приклад | Опис |
-|--------|---------|------|
-| `lr<N>` | `lr1`, `lr2`, `lr3` | Рекомендований формат |
-| `lab<N>` | `lab1`, `lab2` | Альтернативний варіант |
-| `Back-End` | `Back-End` | Для здачі (якщо вимагається) |
+| Формат     | Приклад             | Опис                         |
+| ---------- | ------------------- | ---------------------------- |
+| `lr<N>`    | `lr1`, `lr2`, `lr3` | Рекомендований формат        |
+| `lab<N>`   | `lab1`, `lab2`      | Альтернативний варіант       |
+| `Back-End` | `Back-End`          | Для здачі (якщо вимагається) |
 
 ```bash
 # Створити нову гілку для ЛР1
@@ -91,14 +96,14 @@ git config user.email "your.email@ztu.edu.ua"
 <type>: <short description>
 ```
 
-| Тип | Опис |
-|-----|------|
-| `feat` | Нова функціональність |
-| `fix` | Виправлення помилки |
-| `docs` | Документація |
-| `style` | Форматування (не впливає на код) |
-| `refactor` | Рефакторинг коду |
-| `test` | Додавання тестів |
+| Тип        | Опис                             |
+| ---------- | -------------------------------- |
+| `feat`     | Нова функціональність            |
+| `fix`      | Виправлення помилки              |
+| `docs`     | Документація                     |
+| `style`    | Форматування (не впливає на код) |
+| `refactor` | Рефакторинг коду                 |
+| `test`     | Додавання тестів                 |
 
 ### Приклад історії комітів
 
