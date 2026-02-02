@@ -14,11 +14,15 @@
 
 ## Швидкий старт
 
+
 Склонуйте репозиторій:
 
 ```bash
 git clone https://github.com/victorchei/php-labs.git
 cd php-labs
+# Налаштуйте git для цього репозиторію:
+git config user.name "Прізвище Ім'я"
+git config user.email "your.email@ztu.edu.ua"
 ```
 
 Встановіть залежності автоматично:
