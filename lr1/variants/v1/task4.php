@@ -1,5 +1,7 @@
 <?php
+$config = require __DIR__.'/config.php';
 require_once __DIR__.'/tasks/task4.php';
+
 $hour = 14;
 $timeOfDay = determineTimeOfDay($hour);
 $styles = [
@@ -16,5 +18,5 @@ $content = '<div class="card" style="' . $nightStyle . '">
     <div class="result-text">'.$timeOfDay.'</div>
     <p class="info" style="color:#666;">Функція: determineTimeOfDay('.$hour.') = "'.$timeOfDay.'"</p>
 </div>';
-require __DIR__.'/layout.php';
-renderLayout($content);
+require dirname(__DIR__).'/shared/layout.php';
+renderLayout($content, $config);

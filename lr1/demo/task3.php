@@ -1,61 +1,52 @@
 <?php
 /**
- * Завдання 3: Конвертер валют (EUR → UAH)
- * Варіант 1
+ * Завдання 3: Конвертер валют (USD → UAH)
  *
  * Демонстрація: змінні, арифметичні операції, функції
  */
 
 /**
- * Конвертує євро в гривні
+ * Конвертує долари в гривні
  */
-function convertEurToUah(float $eur, float $rate): int
+function convertUsdToUah(float $usd, float $rate): int
 {
-    return (int) floor($eur * $rate);
+    return (int) floor($usd * $rate);
 }
 
 /**
  * Форматує результат конвертації
  */
-function formatConversionResult(float $eur, int $uah): string
+function formatConversionResult(float $usd, int $uah): string
 {
-    return "{$eur} євро = {$uah} грн";
+    return "{$usd} долар = {$uah} грн";
 }
 
-// Вхідні дані (v1)
-$eur = 250;
-$rate = 45.20;
+// Вхідні дані (demo)
+$usd = 100;
+$rate = 41.50;
 
 // Розрахунок
-$uah = convertEurToUah($eur, $rate);
-$result = formatConversionResult($eur, $uah);
+$uah = convertUsdToUah($usd, $rate);
+$result = formatConversionResult($usd, $uah);
 ?>
 <!DOCTYPE html>
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title>Завдання 3 — Конвертер валют (v1)</title>
+    <title>Завдання 3 — Конвертер валют</title>
     <link rel="stylesheet" href="demo.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 40px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-    </style>
 </head>
-<body>
+<body class="task3-body">
     <div class="back-button-container">
         <button onclick="window.location.href='index.php'" class="back-button">← До демо</button>
     </div>
     <div class="card">
-        <h2>💶 Конвертер EUR → UAH</h2>
-        <p><strong>Курс:</strong> 1 EUR = <?= $rate ?> грн</p>
+        <h2>💵 Конвертер USD → UAH</h2>
+        <p><strong>Курс:</strong> 1 USD = <?= $rate ?> грн</p>
         <div class="result">
             <?= $result ?>
         </div>
-        <p class="info">Функція: convertEurToUah(<?= $eur ?>, <?= $rate ?>) = <?= $uah ?></p>
+        <p class="info">Функція: convertUsdToUah(<?= $usd ?>, <?= $rate ?>) = <?= $uah ?></p>
     </div>
 </body>
 </html>

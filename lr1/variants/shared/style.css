@@ -1,6 +1,14 @@
-/* Глобальні стилі для всіх завдань ЛР1, варіант 1 */
+/**
+ * Lab-specific styles for LR1 variants
+ * Extends: shared/css/base.css
+ * Used by: all lr1 variants (v1, v2, ... v15)
+ */
+
+/* Import global base styles */
+@import '../../../shared/css/base.css';
+
+/* ===== LR1 Specific: Page Background ===== */
 body {
-  font-family: Arial, sans-serif;
   padding: 40px;
   background: linear-gradient(135deg, #e0e7ff 0%, #f3f4f6 100%);
   min-height: 100vh;
@@ -43,6 +51,11 @@ body {
   margin-right: 16px;
 }
 .nav .variant-switch {
+  margin-right: 16px;
+}
+.nav-variant {
+  font-weight: 600;
+  color: #4f46e5;
   margin-right: 16px;
 }
 @media (max-width: 600px) {
@@ -275,4 +288,97 @@ body {
   font-size: 22px;
   max-width: 600px;
   margin: 0 auto;
+}
+
+/* ===== Test Status Bar ===== */
+.test-status-bar {
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.test-status-main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.test-status-icon {
+  font-size: 24px;
+}
+.test-status-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+}
+.test-status-details {
+  display: flex;
+  gap: 8px;
+}
+.test-badge {
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+}
+.test-badge-passed {
+  background: #d1fae5;
+  color: #065f46;
+}
+.test-badge-failed {
+  background: #fee2e2;
+  color: #991b1b;
+}
+.test-badge-total {
+  background: #e0e7ff;
+  color: #3730a3;
+}
+
+/* Test details (collapsible) */
+.test-details {
+  background: #f9fafb;
+  border-radius: 8px;
+  padding: 10px 15px;
+  margin-bottom: 20px;
+}
+.test-details summary {
+  cursor: pointer;
+  font-size: 14px;
+  color: #4b5563;
+  padding: 5px 0;
+}
+.test-details summary:hover {
+  color: #1f2937;
+}
+.test-list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0 0;
+}
+.test-list li {
+  padding: 6px 10px;
+  margin: 4px 0;
+  border-radius: 4px;
+  font-size: 13px;
+}
+.test-item-passed {
+  background: #ecfdf5;
+  color: #065f46;
+}
+.test-item-passed span {
+  color: #10b981;
+}
+.test-item-failed {
+  background: #fef2f2;
+  color: #991b1b;
+}
+.test-item-failed span {
+  color: #ef4444;
+}
+.test-error {
+  color: #9ca3af;
+  font-size: 11px;
 }

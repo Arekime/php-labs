@@ -1,8 +1,7 @@
 <?php
-function sumOfDigits(int $number): int { $sum=0; while($number>0){$sum+=$number%10;$number=(int)($number/10);} return $sum; }
-function productOfDigits(int $number): int { $product=1; while($number>0){$product*=$number%10;$number=(int)($number/10);} return $product; }
-function reverseNumber(int $number): int { $reversed=0; while($number>0){$reversed=$reversed*10+$number%10;$number=(int)($number/10);} return $reversed; }
-function maxFromDigits(int $number): int { $digits=[]; while($number>0){$digits[]=$number%10;$number=(int)($number/10);} rsort($digits); $result=0; foreach($digits as $digit){$result=$result*10+$digit;} return $result; }
+$config = require __DIR__.'/config.php';
+require_once __DIR__.'/tasks/task6.php';
+
 $number = mt_rand(1000, 9999);
 $d1 = (int)($number / 1000);
 $d2 = (int)(($number % 1000) / 100);
@@ -60,5 +59,6 @@ ob_start();
 </div>
 <?php
 $content = ob_get_clean();
-require __DIR__.'/layout.php';
-renderLayout($content);
+
+require dirname(__DIR__).'/shared/layout.php';
+renderLayout($content, $config);

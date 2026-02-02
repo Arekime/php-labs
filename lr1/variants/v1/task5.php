@@ -1,11 +1,7 @@
 <?php
-function isEvenOrOdd(int $digit): string {
-    switch ($digit) {
-        case 0: case 2: case 4: case 6: case 8: return "парна";
-        case 1: case 3: case 5: case 7: case 9: return "непарна";
-        default: return "невідомо";
-    }
-}
+$config = require __DIR__.'/config.php';
+require_once __DIR__.'/tasks/task5.php';
+
 $digit = 7;
 $result = isEvenOrOdd($digit);
 $isEven = $result === "парна";
@@ -25,9 +21,6 @@ ob_start();
 </div>
 <?php
 $content = ob_get_clean();
-require __DIR__.'/layout.php';
-renderLayout(
-    '<div class="not-implemented">
-        <b>Завдання 5 не виконано</b>
-    </div>'
-);
+
+require dirname(__DIR__).'/shared/layout.php';
+renderLayout($content, $config);

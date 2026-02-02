@@ -1,86 +1,67 @@
 <?php
 /**
- * Завдання 4: Визначення пори доби (if-else)
- * Варіант 1
+ * Завдання 4: Визначення пори року (if-else)
  *
  * Демонстрація: конструкція if-else
  */
 
 /**
- * Визначає пору доби за годиною
- *
- * @param int $hour Година (0-23)
- * @return string Пора доби
+ * Визначає пору року за номером місяця
  */
-function determineTimeOfDay(int $hour): string
+function determineSeason(int $month): string
 {
-    if ($hour >= 6 && $hour <= 11) {
-        return "Ранок";
-    } elseif ($hour >= 12 && $hour <= 17) {
-        return "День";
-    } elseif ($hour >= 18 && $hour <= 22) {
-        return "Вечір";
+    if ($month >= 3 && $month <= 5) {
+        return "Весна";
+    } elseif ($month >= 6 && $month <= 8) {
+        return "Літо";
+    } elseif ($month >= 9 && $month <= 11) {
+        return "Осінь";
     } else {
-        return "Ніч";
+        return "Зима";
     }
 }
 
-// Вхідні дані (v1)
-$hour = 14;
+// Вхідні дані (demo)
+$month = 7;
 
-// Визначення пори доби
-$timeOfDay = determineTimeOfDay($hour);
+// Визначення пори року
+$season = determineSeason($month);
+
+// Назви місяців
+$monthNames = [
+    1 => "Січень", 2 => "Лютий", 3 => "Березень",
+    4 => "Квітень", 5 => "Травень", 6 => "Червень",
+    7 => "Липень", 8 => "Серпень", 9 => "Вересень",
+    10 => "Жовтень", 11 => "Листопад", 12 => "Грудень"
+];
 
 // Кольори та емодзі для кожної пори
 $styles = [
-    "Ранок" => ["color" => "#fbbf24", "emoji" => "🌅", "bg" => "#fef3c7"],
-    "День" => ["color" => "#3b82f6", "emoji" => "☀️", "bg" => "#dbeafe"],
-    "Вечір" => ["color" => "#f97316", "emoji" => "🌆", "bg" => "#ffedd5"],
-    "Ніч" => ["color" => "#1e3a5f", "emoji" => "🌙", "bg" => "#1e293b"],
+    "Весна" => ["class" => "spring", "color" => "#10b981", "emoji" => "🌸"],
+    "Літо" => ["class" => "summer", "color" => "#f59e0b", "emoji" => "☀️"],
+    "Осінь" => ["class" => "autumn", "color" => "#f97316", "emoji" => "🍂"],
+    "Зима" => ["class" => "winter", "color" => "#3b82f6", "emoji" => "❄️"],
 ];
 
-$style = $styles[$timeOfDay];
+$style = $styles[$season];
 ?>
 <!DOCTYPE html>
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title>Завдання 4 — Пора доби (v1)</title>
+    <title>Завдання 4 — Пора року</title>
     <link rel="stylesheet" href="demo.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 40px;
-            background: <?= $style['bg'] ?>;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.3s;
-            <?= $timeOfDay === "Ніч" ? "color: white;" : "" ?>
-        }
-        .card {
-            background: white;
-            padding: 50px;
-            border-radius: 20px;
-            box-shadow: 0 8px 40px rgba(0,0,0,0.2);
-            text-align: center;
-            max-width: none;
-        }
-        .emoji { font-size: 80px; margin-bottom: 20px; }
-        .time { font-size: 72px; font-weight: bold; color: <?= $style['color'] ?>; }
-        .result { font-size: 36px; margin-top: 20px; color: #333; background: none; padding: 0; }
-    </style>
 </head>
-<body>
-    <div class="back-button-container" style="position:fixed;top:20px;left:20px;">
+<body class="task4-body <?= $style['class'] ?>">
+    <div class="back-button-container fixed">
         <button onclick="window.location.href='index.php'" class="back-button">← До демо</button>
     </div>
-    <div class="card">
-        <div class="emoji"><?= $style['emoji'] ?></div>
-        <div class="time"><?= sprintf("%02d:00", $hour) ?></div>
-        <div class="result"><?= $timeOfDay ?></div>
-        <p class="info">Функція: determineTimeOfDay(<?= $hour ?>) = "<?= $timeOfDay ?>"</p>
+    <div class="card large">
+        <div class="season-emoji"><?= $style['emoji'] ?></div>
+        <div class="season-month" style="color:<?= $style['color'] ?>">Місяць <?= $month ?></div>
+        <div class="season-month-name"><?= $monthNames[$month] ?></div>
+        <div class="season-result"><?= $season ?></div>
+        <p class="info">Функція: determineSeason(<?= $month ?>) = "<?= $season ?>"</p>
     </div>
 </body>
 </html>

@@ -1,19 +1,10 @@
 <?php
-function generateChessboard(int $n): string {
-    $html = "<table class='chessboard'>";
-    for ($i = 0; $i < $n; $i++) {
-        $html .= "<tr>";
-        for ($j = 0; $j < $n; $j++) {
-            $color = (($i + $j) % 2 === 0) ? '#fff' : '#000';
-            $html .= "<td style='background-color: $color;'></td>";
-        }
-        $html .= "</tr>";
-    }
-    $html .= "</table>";
-    return $html;
-}
+$config = require __DIR__.'/config.php';
+require_once __DIR__.'/tasks/task7.php';
+
 $n = 8;
 $chessboard = generateChessboard($n);
+
 ob_start();
 ?>
 <div style="text-align:center;">
@@ -24,7 +15,6 @@ ob_start();
 </div>
 <?php
 $content = ob_get_clean();
-require __DIR__.'/layout.php';
-renderLayout('<div class="not-implemented">
-        <b>Завдання 7.1 не виконано</b>
-    </div>');
+
+require dirname(__DIR__).'/shared/layout.php';
+renderLayout($content, $config);
