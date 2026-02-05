@@ -5,64 +5,85 @@
 ```text
                                     +------------------+
                                     |    index.php     |
-                                    |   (Home Page)    |
+                                    |  (Select Variant)|
+                                    +--------+---------+
+                                             |
+                                             v
+                                    +------------------+
+                                    |  Variant Page    |
+                                    | /lr1/variants/v1 |
+                                    |    index.php     |
                                     +--------+---------+
                                              |
               +------------------------------+------------------------------+
               |                              |                              |
               v                              v                              v
-    +-----------------+            +-----------------+            +-----------------+
-    |      LR1        |            |      LR2        |            |     LR3...      |
-    +-----------------+            +-----------------+            +-----------------+
+        +-----------+               +--------------+               +--------------+
+        |   Demo    |               |   Task 2     |               |   Task N     |
+        +-----------+               +--------------+               +--------------+
               |
               v
-    +-------------------+
-    |  Variant Index    |
-    |  /lr1/variants/   |
-    |  v1/index.php     |
-    +-------------------+
-              |
-              +---> Task Cards [Demo] [2] [3] [4] [5] [6] [7.1] [7.2]
-                         |       |    |    |    |    |     |      |
-                         |       +----+----+----+----+-----+------+
-                         |                   |
-                         v                   v
-                   /lr1/demo/          /lr1/variants/v1/
-                   index.php           task{N}.php
+        Demo Tasks
+        (accessible only
+        from variant page)
 ```
 
 ## URL Structure
 
 ```text
-/                                    -> Home page (lab selection)
-/lr1/demo/index.php                  -> Demo index (task cards, NO demo link)
-/lr1/demo/task2.php                  -> Demo task 2
-/lr1/variants/v1/index.php           -> Variant 1 index (task cards + demo link)
-/lr1/variants/v1/task2.php           -> Variant 1, task 2
+/                                    -> Home page (variant selection only)
+/lr1/variants/v1/index.php           -> Variant page (task cards + demo)
+/lr1/variants/v1/task3.php           -> Variant task
+/lr1/demo/index.php?from=v1          -> Demo index (from variant only)
+/lr1/demo/task3.php?from=v1          -> Demo task (from variant only)
+```
+
+## Navigation Flow
+
+```text
+                    Home Page (/)
+                  [Select Variant]
+                         |
+                         v
+               Variant Page (index.php)
+            [Demo] [2] [3] [4] [5] [6] [7]
+                  /     |           \
+                 /      |            \
+                v       v             v
+           Demo      Task 2  ...   Task N
+           Index     Page          Page
+              |         |             |
+              v         |             |
+         Demo Tasks     |             |
+              |         |             |
+              +---------+-------------+
+                        |
+                        v
+              [Back to Variant]
 ```
 
 ## Page Types
 
 ### 1. Home Page (`/index.php`)
 
+Simple variant selection. After selecting → redirect to variant page.
+
 ```text
 +--------------------------------------------------+
 |                    PHP Labs                       |
 |                                                  |
-|     +--------+    +--------+    +--------+       |
-|     |  LR1   |    |  LR2   |    |  LR3   |       |
-|     +--------+    +--------+    +--------+       |
+|          Variant: [v1 ▼]  [ Select ]            |
 |                                                  |
 +--------------------------------------------------+
 ```
 
-### 2. Variant Index Page (`/lr1/variants/v1/index.php`)
+### 2. Variant Page (`/lr1/variants/v1/index.php`)
 
-Compact header fixed to top. Task cards with numbers. First card = Demo.
+Main working page. Shows task cards with Demo as first card.
 
 ```text
-+--------------------------------------------------+ <- fixed top
-|  [Home]                            Варіант 1     |
++--------------------------------------------------+
+|  [Home]                            Variant 1     |
 +--------------------------------------------------+
 
      +------+  +---+  +---+  +---+  +---+  +---+
@@ -74,13 +95,28 @@ Compact header fixed to top. Task cards with numbers. First card = Demo.
                +-----+  +-----+
 ```
 
-### 3. Demo Index Page (`/lr1/demo/index.php`)
+### 3. Variant Task Page (`/lr1/variants/v1/task3.php`)
 
-Same structure, NO "Demo" card (this IS the demo).
+Task page with navigation to demo.
 
 ```text
-+--------------------------------------------------+ <- fixed top
-|  [Home]                                Демо      |
++------------------------------------------------------------------+
+|  [Home] [← Variant] [Demo]  |  ❌ 0%  |  Variant 1 / Task 3      |
++------------------------------------------------------------------+
+
++------------------------------------------------------------------+
+|                        Task Content                              |
+|                    (student implements)                          |
++------------------------------------------------------------------+
+```
+
+### 4. Demo Index (`/lr1/demo/index.php?from=v1`)
+
+Demo overview. Only accessible from variant page (has `?from=v1`).
+
+```text
++--------------------------------------------------+
+|  [Home] [← Variant 1]                    Demo    |
 +--------------------------------------------------+
 
         +---+  +---+  +---+  +---+  +---+
@@ -92,186 +128,85 @@ Same structure, NO "Demo" card (this IS the demo).
                +-----+  +-----+
 ```
 
-### 4. Task Page (both Demo and Variant)
+### 5. Demo Task Page (`/lr1/demo/task3.php?from=v1`)
 
-Header fixed to top, compact size, includes test status.
-
-**Variant task (initial state - not implemented):**
-```text
-+------------------------------------------------------------------+ <- fixed top
-|  [Home] [Back]  |  ❌ Не виконано 0/6 0%  |  Варіант 1 / Завд. 3 |
-+------------------------------------------------------------------+
-```
-
-**Variant task (after student completes):**
-```text
-+------------------------------------------------------------------+ <- fixed top
-|  [Home] [Back]  |  ✅ Виконано 6/6 100%   |  Варіант 1 / Завд. 3 |
-+------------------------------------------------------------------+
-```
-
-**Demo task (always completed):**
-```text
-+------------------------------------------------------------------+ <- fixed top
-|  [Home] [Back]  |  ✅ Виконано 6/6 100%   |  Демо / Завд. 3      |
-+------------------------------------------------------------------+
-```
+Demo solution. Shows "Back to Variant" button.
 
 ```text
 +------------------------------------------------------------------+
-|                                                                  |
-|                        Task Content                              |
-|                                                                  |
+|  [Home] [← Demo] [← Variant 1]  |  ✅ 100%  |  Demo / Task 3     |
++------------------------------------------------------------------+
+
++------------------------------------------------------------------+
+|                        Demo Content                              |
+|                    (completed example)                           |
 +------------------------------------------------------------------+
 ```
 
-**Header elements (left to right):**
-- `[Home]` - go to home page
-- `[Back]` - go back to index
-- Test status: icon + short text + score + percentage
-- Context: Variant/Demo + Task number
+## Navigation Buttons
 
-**Test status states:**
-- `❌ Не виконано 0/6 0%` - initial state (student variants)
-- `⚠️ Частково 3/6 50%` - some tests pass
-- `✅ Виконано 6/6 100%` - all tests pass (demo, completed variants)
+| Button | Description | Appears On |
+|--------|-------------|------------|
+| `[Home]` | Back to home `/` | All pages |
+| `[← Variant]` | Back to variant index | Variant task pages |
+| `[Demo]` | Open demo for this task | Variant task pages |
+| `[← Variant N]` | Back to variant | Demo pages |
+| `[← Demo]` | Back to demo index | Demo task pages |
 
-## Task Card Design
+## Key Principles
 
-Standardized across the project:
+1. **Variant-centric**: Student selects variant once, works within it
+2. **Demo from variant only**: Demo is accessed through variant page
+3. **Easy return**: Always can return to variant from demo
+4. **Context preserved**: `?from=vN` parameter tracks origin variant
 
-```text
-+-------+
-|       |
-|   2   |    <- Just number (or "Demo" for demo link)
-|       |
-+-------+
+## Button Styles
 
-States:
-- Default: light background
-- Hover: shadow + scale
-- Active/Current: highlighted border
-```
+| Type | Background | Text | Purpose |
+|------|------------|------|---------|
+| Default | `#f1f5f9` | `#374151` | Home, Back |
+| Demo | `#e0e7ff` | `#4f46e5` | Link to demo |
+| Variant | `#d1fae5` | `#065f46` | Return to variant |
 
-## Navigation Flow
+## Student Workflow
 
-```text
-                    Home Page (/)
-                         |
-         +---------------+---------------+
-         |                               |
-         v                               v
-   Variant Index                    Demo Index
-   /lr1/variants/v1/               /lr1/demo/
-   index.php                       index.php
-         |                               |
-         |  [Demo] ------------------>   |
-         |                               |
-    [2][3][4][5][6][7.1][7.2]      [2][3][4][5][6][7.1][7.2]
-         |                               |
-         v                               v
-   Variant Tasks                    Demo Tasks
-   /lr1/variants/v1/task{N}.php    /lr1/demo/task{N}.php
-```
+1. Open `/` → Select variant (e.g., v1)
+2. Arrive at variant page `/lr1/variants/v1/index.php`
+3. See task cards: `[Demo] [2] [3] [4] [5] [6] [7.1] [7.2]`
+4. Click task (e.g., "3") → `/lr1/variants/v1/task3.php`
+5. See test status (❌ not implemented)
+6. Click `[Demo]` → `/lr1/demo/task3.php?from=v1`
+7. Study demo solution
+8. Click `[← Variant 1]` → back to variant task
+9. Implement solution, refresh, see ✅
+10. Click `[Home]` → back to home (select variant again)
 
-## File Architecture
+## File Structure
 
 ```text
 php-labs/
-├── index.php                      # Home page
-├── shared/                        # GLOBAL shared (all labs)
-│   ├── css/
-│   │   └── base.css              # Base styles + task cards
-│   ├── helpers/
-│   │   └── test_helper.php       # Test functions
-│   └── templates/
-│       └── task_cards.php        # Shared task cards component
+├── index.php                      # Home (variant selection)
 │
-├── lr1/                           # Lab 1
+├── lr1/
 │   ├── demo/
-│   │   ├── index.php             # Demo index (cards, NO demo link)
-│   │   ├── demo.css
-│   │   └── task*.php
+│   │   ├── index.php             # Demo index (?from=vN)
+│   │   ├── layout.php            # Demo layout
+│   │   └── task*.php             # Demo tasks
 │   │
 │   └── variants/
 │       ├── shared/
-│       │   ├── layout.php        # Layout with nav
-│       │   ├── index_layout.php  # Index page layout (cards)
+│       │   ├── layout.php        # Variant layout
 │       │   └── style.css
 │       │
 │       └── v1/
-│           ├── index.php         # Variant index (cards + demo link)
+│           ├── index.php         # Variant page (task cards)
 │           ├── config.php
-│           └── task*.php
+│           └── task*.php         # Variant tasks
 ```
 
-## Header Design
+## URL Parameters
 
-**All pages:** Fixed to top, compact height (~50px).
-
-```text
-+------------------------------------------------------------------+
-|  [Nav buttons]  |  [Status (task only)]  |  [Title/Variant]      |
-+------------------------------------------------------------------+
-```
-
-## Navigation Elements
-
-| Element | Variant Index | Demo Index | Task Page |
-|---------|---------------|------------|-----------|
-| Home button | ✅ | ✅ | ✅ |
-| Back button | ❌ | ❌ | ✅ |
-| Test status (in header) | ❌ | ❌ | ✅ |
-| Title | "Варіант N" | "Демо" | "Варіант N / Завд. X" |
-| Demo card | ✅ | ❌ | - |
-| Task cards | ✅ | ✅ | - |
-
-## Card Component
-
-Reusable across all labs:
-
-```php
-<?php
-// shared/templates/task_cards.php
-function renderTaskCards(array $tasks, bool $showDemo = true, string $demoUrl = ''): string
-{
-    $html = '<div class="task-cards">';
-
-    if ($showDemo && $demoUrl) {
-        $html .= '<a href="' . $demoUrl . '" class="task-card task-card-demo">Demo</a>';
-    }
-
-    foreach ($tasks as $num => $task) {
-        $html .= '<a href="' . $task['url'] . '" class="task-card">' . $num . '</a>';
-    }
-
-    $html .= '</div>';
-    return $html;
-}
-```
-
-## Test Status Indicators
-
-| Status | Icon | Color | Meaning |
-|--------|------|-------|---------|
-| Passed | ✅ | Green | All tests pass |
-| Partial | ⚠️ | Yellow | Some tests pass |
-| Not Implemented | ❌ | Red | No tests pass |
-| No Tests | ❓ | Gray | Tests not found |
-
-## Quick Reference
-
-### For Students
-
-1. Open variant: `/lr1/variants/vN/index.php`
-2. See task cards with numbers
-3. Click card to open task
-4. Check test status (red = not done)
-5. Edit `tasks/taskN.php`
-6. Refresh to see results
-
-### For Instructors
-
-1. Demo: `/lr1/demo/index.php`
-2. Same card interface as students
-3. Validate: `php lr1/validate_lab.php`
+| Parameter | Values | Purpose |
+|-----------|--------|---------|
+| `variant` | `v1`...`v15` | Selected variant (home page) |
+| `from` | `v1`...`v15` | Origin variant (demo pages) |

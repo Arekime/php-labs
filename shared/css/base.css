@@ -276,6 +276,20 @@ body {
 .header-btn:hover {
   background: #e2e8f0;
 }
+.header-btn-demo {
+  background: #e0e7ff;
+  color: #4f46e5;
+}
+.header-btn-demo:hover {
+  background: #c7d2fe;
+}
+.header-btn-variant {
+  background: #d1fae5;
+  color: #065f46;
+}
+.header-btn-variant:hover {
+  background: #a7f3d0;
+}
 .body-with-header {
   padding-top: 70px;
 }

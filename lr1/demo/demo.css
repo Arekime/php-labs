@@ -12,6 +12,51 @@ body {
     padding: 40px;
     min-height: 100vh;
 }
+body.body-with-header {
+    padding-top: 70px;
+}
+
+/* Content wrapper for layout */
+.content-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Test details */
+.test-details {
+    background: #f9fafb;
+    border-radius: 8px;
+    padding: 10px 15px;
+    margin-top: 20px;
+}
+.test-details summary {
+    cursor: pointer;
+    font-size: 14px;
+    color: #4b5563;
+}
+.test-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+}
+.test-list li {
+    padding: 6px 10px;
+    margin: 4px 0;
+    border-radius: 4px;
+    font-size: 13px;
+}
+.test-item-passed {
+    background: #ecfdf5;
+    color: #065f46;
+}
+.test-item-failed {
+    background: #fef2f2;
+    color: #991b1b;
+}
+.test-error {
+    color: #9ca3af;
+    font-size: 11px;
+}
 
 /* Back button */
 .back-button {
@@ -367,6 +412,49 @@ body {
 }
 .header-btn:hover {
     background: #e2e8f0;
+}
+.header-btn-demo {
+    background: #e0e7ff;
+    color: #4f46e5;
+}
+.header-btn-demo:hover {
+    background: #c7d2fe;
+}
+.header-btn-variant {
+    background: #d1fae5;
+    color: #065f46;
+}
+.header-btn-variant:hover {
+    background: #a7f3d0;
+}
+
+/* Header status */
+.header-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+.header-status-passed {
+    background: #d1fae5;
+    color: #065f46;
+}
+.header-status-failed {
+    background: #fee2e2;
+    color: #991b1b;
+}
+.header-status-partial {
+    background: #fef3c7;
+    color: #92400e;
+}
+.header-status-icon {
+    font-size: 16px;
+}
+.header-status-score {
+    font-weight: 600;
+    margin-left: 4px;
 }
 
 /* ===== Task Cards ===== */

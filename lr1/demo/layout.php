@@ -1,27 +1,25 @@
 <?php
 /**
- * Shared layout template for LR1 variant task pages
+ * Shared layout template for LR1 demo task pages
  *
  * Features:
  * - Fixed compact header (50px)
- * - Test status in header
- * - Back button to index
+ * - Link back to variant if came from one (?from=vN)
+ * - Test status display
  *
  * Usage:
- *   $config = require __DIR__.'/config.php';
- *   require_once __DIR__.'/tasks/taskX.php';
+ *   require_once __DIR__.'/layout.php';
  *   $content = '...HTML...';
- *   require dirname(__DIR__).'/shared/layout.php';
- *   renderLayout($content, $config);
+ *   renderDemoLayout($content, $taskName, $bodyClass);
  */
 
 // Use global test helper
-require_once dirname(__DIR__, 3) . '/shared/helpers/test_helper.php';
+require_once dirname(__DIR__, 2) . '/shared/helpers/test_helper.php';
 
 /**
  * Renders compact header status HTML
  */
-function renderHeaderStatus(array $results): string
+function renderDemoHeaderStatus(array $results): string
 {
     $statusConfig = [
         'passed' => ['icon' => '✅', 'text' => 'Виконано', 'class' => 'header-status-passed'],
@@ -42,58 +40,52 @@ function renderHeaderStatus(array $results): string
 }
 
 /**
- * Renders the full page layout with fixed header
+ * Renders the full demo page layout with fixed header
+ *
+ * @param string $content HTML content for the page
+ * @param string $taskName Task name for title (e.g., "Завдання 3")
+ * @param string $bodyClass CSS class for body (e.g., "task3-body")
+ * @param string|null $testName Test name to run (e.g., "task3"), null to skip tests
  */
-function renderLayout(string $content, array $config): void
+function renderDemoLayout(string $content, string $taskName, string $bodyClass = '', ?string $testName = null): void
 {
-    $variantName = $config['variantName'] ?? "Варіант";
-    $lab = $config['lab'] ?? 'lr1';
-    $labName = $config['labName'] ?? 'ЛР1';
-    $tasks = $config['tasks'] ?? [];
-    $variantPath = $config['variantPath'] ?? __DIR__;
-    $currentTask = $config['currentTask'] ?? basename($_SERVER['SCRIPT_NAME']);
+    // Check if came from a variant
+    $fromVariant = $_GET['from'] ?? null;
+    $currentTask = basename($_SERVER['SCRIPT_NAME']);
 
-    $taskInfo = $tasks[$currentTask] ?? ['name' => 'Завдання', 'test' => null];
-    $taskName = $taskInfo['name'];
-
-    // Extract task number for display
-    $taskNum = '';
-    if (preg_match('/(\d+(?:\.\d+)?)/', $taskName, $matches)) {
-        $taskNum = "Завд. {$matches[1]}";
+    // Build variant URL if came from one
+    $variantUrl = null;
+    if ($fromVariant && preg_match('/^v\d+$/', $fromVariant)) {
+        $variantUrl = "/lr1/variants/{$fromVariant}/{$currentTask}";
     }
 
-    // Run tests automatically
+    // Run tests if test name provided
     $testResults = ['status' => 'no_tests', 'passed' => 0, 'failed' => 0, 'total' => 0, 'details' => []];
-    if (isset($taskInfo['test'])) {
-        $testResults = runTaskTests($taskInfo['test'], $variantPath);
+    if ($testName) {
+        $testResults = runTaskTests($testName, __DIR__);
     }
-
-    // Path to shared styles
-    $sharedPath = '../shared';
-
-    // Demo link for current task
-    $variant = $config['variant'] ?? 'v1';
-    $demoUrl = "/{$lab}/demo/{$currentTask}?from={$variant}";
     ?>
 <!DOCTYPE html>
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title><?= htmlspecialchars($taskName) ?> — <?= htmlspecialchars($labName) ?>, <?= htmlspecialchars($variantName) ?></title>
-    <link rel="stylesheet" href="<?= $sharedPath ?>/style.css">
+    <title><?= htmlspecialchars($taskName) ?> — Демо ЛР1</title>
+    <link rel="stylesheet" href="demo.css">
 </head>
-<body class="body-with-header">
+<body class="body-with-header <?= htmlspecialchars($bodyClass) ?>">
     <header class="header-fixed">
         <div class="header-left">
             <a href="/" class="header-btn">Головна</a>
-            <a href="index.php" class="header-btn">← Варіант</a>
-            <a href="<?= htmlspecialchars($demoUrl) ?>" class="header-btn header-btn-demo">📖 Демо</a>
+            <a href="index.php<?= $fromVariant ? '?from=' . htmlspecialchars($fromVariant) : '' ?>" class="header-btn">← Демо</a>
+            <?php if ($variantUrl): ?>
+            <a href="<?= htmlspecialchars($variantUrl) ?>" class="header-btn header-btn-variant">← Варіант <?= htmlspecialchars(substr($fromVariant, 1)) ?></a>
+            <?php endif; ?>
         </div>
         <div class="header-center">
-            <?= renderHeaderStatus($testResults) ?>
+            <?= renderDemoHeaderStatus($testResults) ?>
         </div>
         <div class="header-right">
-            <?= htmlspecialchars($variantName) ?><?= $taskNum ? " / {$taskNum}" : '' ?>
+            Демо<?php if (preg_match('/(\d+(?:\.\d+)?)/', $taskName, $m)): ?> / Завд. <?= $m[1] ?><?php endif; ?>
         </div>
     </header>
 
