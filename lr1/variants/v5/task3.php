@@ -17,8 +17,8 @@ function applyCommission(float $amount, float $commissionPercent): float
 }
 
 // Вхідні дані (варіант 30)
-$uah = 48600;
-$rate = 47.50;
+$uah = 15600;
+$rate = 38.75;
 $commission = 3;
 
 $eurBeforeCommission = convertUahToEur($uah, $rate);
