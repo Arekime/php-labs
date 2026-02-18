@@ -21,7 +21,7 @@ function isVowelOrConsonant(string $letter): string
 }
 
 // Вхідні дані (варіант 30)
-$letter = 'm';
+$letter = 'e';
 
 $result = isVowelOrConsonant($letter);
 $isVowel = $result === "голосна";
