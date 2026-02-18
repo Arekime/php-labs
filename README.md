@@ -36,9 +36,10 @@ git remote add upstream https://github.com/victorchei/php-labs.git
 
 ```bash
 php -S localhost:8000
+
 ```
 
-Відкрийте: <http://localhost:8000>
+Відкрийте: <http://localhosвt:8000>
 
 ## Приклад виконання (Варіант 30, ЛР1)
 
