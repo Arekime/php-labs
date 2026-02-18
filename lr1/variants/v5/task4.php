@@ -25,7 +25,7 @@ function daysInMonth(int $month, int $year = 2025): int
 }
 
 // Вхідні дані (варіант 30)
-$month = 9;
+$month = 5;
 
 $season = determineSeason($month);
 $days = daysInMonth($month);
