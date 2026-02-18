@@ -28,7 +28,7 @@ function isPalindrome(int $number): bool
 }
 
 // Вхідні дані (варіант 30)
-$number = 581;
+$number = 748;
 
 $d1 = (int)($number / 100);
 $d2 = (int)(($number % 100) / 10);
