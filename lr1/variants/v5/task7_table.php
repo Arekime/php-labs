@@ -1,18 +1,18 @@
 <?php
 /**
- * Завдання 6.1: Смугаста таблиця 11x8
+ * Завдання 6.1: Таблиця 7x5 з випадковими кольорами
  */
 
 require_once dirname(__DIR__, 3) . '/shared/helpers/dev_reload.php';
 
-function generateStripedTable(int $rows, int $cols, string $color1, string $color2): string
+function generateRandomTable(int $rows, int $cols): string
 {
     $html = "<table class='chessboard'>";
     for ($i = 0; $i < $rows; $i++) {
-        $bgColor = ($i % 2 === 0) ? $color1 : $color2;
         $html .= "<tr>";
         for ($j = 0; $j < $cols; $j++) {
-            $html .= "<td style='background-color:{$bgColor};'></td>";
+            $randomColor = sprintf('#%06X', mt_rand(0, 0xFFFFFF));
+            $html .= "<td style='background-color:{$randomColor}; width: 50px; height: 50px;'></td>";
         }
         $html .= "</tr>";
     }
@@ -20,19 +20,26 @@ function generateStripedTable(int $rows, int $cols, string $color1, string $colo
     return $html;
 }
 
-$rows = 11;
-$cols = 8;
-$color1 = '#6366f1';
-$color2 = '#a5b4fc';
+$rows = 7;
+$cols = 5;
 
-$table = generateStripedTable($rows, $cols, $color1, $color2);
+$table = generateRandomTable($rows, $cols);
 ?>
 <!DOCTYPE html>
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title>Завдання 6.1 — Смугаста таблиця</title>
+    <title>Завдання 6.1 — Кольорова таблиця</title>
     <link rel="stylesheet" href="../../demo/demo.css">
+    <style>
+        .chessboard {
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        .chessboard td {
+            border: 1px solid #ddd;
+        }
+    </style>
 </head>
 <body class="task7-table-body body-with-header">
     <header class="header-fixed">
@@ -45,8 +52,8 @@ $table = generateStripedTable($rows, $cols, $color1, $color2);
         <div class="header-right">В-30 / Завд. 6.1</div>
     </header>
 
-    <h1>🎨 Смугаста таблиця <?= $rows ?>x<?= $cols ?></h1>
-    <div class="params">generateStripedTable(<?= $rows ?>, <?= $cols ?>)</div>
+    <h1>🎨 Кольорова таблиця <?= $rows ?>x<?= $cols ?></h1>
+    <div class="params">generateRandomTable(<?= $rows ?>, <?= $cols ?>)</div>
 
     <?= $table ?>
 
