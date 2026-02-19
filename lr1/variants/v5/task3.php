@@ -1,37 +1,27 @@
 <?php
 /**
- * Завдання 2: Конвертер валют (UAH → EUR)
+ * Завдання 2: Конвертер валют (UAH → USD)
  *
- * 48600 грн → євро, курс 47.50, комісія 3%
+ * 15600 грн → долари, курс 38.75
  */
 require_once __DIR__ . '/layout.php';
 
-function convertUahToEur(float $uah, float $rate): float
+function convertUahToUsd(float $uah, float $rate): float
 {
     return round($uah / $rate, 2);
 }
 
-function applyCommission(float $amount, float $commissionPercent): float
-{
-    return round($amount * (1 - $commissionPercent / 100), 2);
-}
-
-// Вхідні дані (варіант 30)
+// Вхідні дані (варіант 5)
 $uah = 15600;
 $rate = 38.75;
-$commission = 3;
 
-$eurBeforeCommission = convertUahToEur($uah, $rate);
-$eurAfterCommission = applyCommission($eurBeforeCommission, $commission);
+$usd = convertUahToUsd($uah, $rate);
 
 $content = '<div class="card">
-    <h2>💶 Конвертер UAH → EUR</h2>
-    <p><strong>Курс:</strong> 1 EUR = ' . $rate . ' грн</p>
-    <p><strong>Комісія банку:</strong> ' . $commission . '%</p>
-    <div class="result">' . $uah . ' грн = ' . $eurBeforeCommission . ' євро</div>
-    <div class="result" style="margin-top:10px;background:#d1fae5;">Після комісії ' . $commission . '% — <strong>' . $eurAfterCommission . '</strong> євро</div>
-    <p class="info">convertUahToEur(' . $uah . ', ' . $rate . ') = ' . $eurBeforeCommission . '</p>
-    <p class="info">applyCommission(' . $eurBeforeCommission . ', ' . $commission . ') = ' . $eurAfterCommission . '</p>
+    <h2>💵 Конвертер UAH → USD</h2>
+    <p><strong>Курс:</strong> 1 USD = ' . $rate . ' грн</p>
+    <div class="result">' . $uah . ' грн = ' . $usd . ' долар</div>
+    <p class="info">convertUahToUsd(' . $uah . ', ' . $rate . ') = ' . $usd . '</p>
 </div>';
 
 renderVariantLayout($content, 'Завдання 2', 'task3-body');

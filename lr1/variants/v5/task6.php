@@ -2,7 +2,7 @@
 /**
  * Завдання 5: Тризначне число
  *
- * Число 581: сума цифр=14, зворотне=185, паліндром=ні
+ * Число 748: сума цифр=19, зворотне=847, найменше=478
  */
 require_once __DIR__ . '/layout.php';
 
@@ -22,12 +22,14 @@ function reverseNumber(int $number): int
     return $d3 * 100 + $d2 * 10 + $d1;
 }
 
-function isPalindrome(int $number): bool
+function smallestNumber(int $number): int
 {
-    return $number === reverseNumber($number);
+    $digits = str_split((string)$number);
+    sort($digits);
+    return (int)implode('', $digits);
 }
 
-// Вхідні дані (варіант 30)
+// Вхідні дані (варіант 5)
 $number = 748;
 
 $d1 = (int)($number / 100);
@@ -36,9 +38,7 @@ $d3 = $number % 10;
 
 $sum = sumOfDigits($number);
 $reversed = reverseNumber($number);
-$palindrome = isPalindrome($number);
-$palindromeText = $palindrome ? "так" : "ні";
-$palindromeColor = $palindrome ? "#10b981" : "#ef4444";
+$smallest = smallestNumber($number);
 
 $content = '<div class="task6-container">
     <div class="card">
@@ -69,10 +69,10 @@ $content = '<div class="task6-container">
         </div>
         <div class="result-row">
             <div>
-                <span>3. Паліндром?</span>
-                <div class="func">isPalindrome(' . $number . ')</div>
+                <span>3. Найменше число</span>
+                <div class="func">smallestNumber(' . $number . ')</div>
             </div>
-            <span class="result-value" style="color:' . $palindromeColor . '">' . $palindromeText . '</span>
+            <span class="result-value">' . $smallest . '</span>
         </div>
     </div>
 </div>';
