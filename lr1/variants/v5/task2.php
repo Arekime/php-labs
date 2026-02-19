@@ -10,10 +10,10 @@ ob_start();
 ?>
 <div class="poem">
     <?php
-    echo "<p style='margin-left: 20px;'>У саду цвітуть <b>вишні</b> білі,</p>";
-    echo "<p style='margin-left: 20px;'>Бджоли гудуть <i>весело</i> навколо,</p>";
-    echo "<p style='margin-left: 20px;'>Пелюстки падають несміливі,</p>";
-    echo "<p style='margin-left: 20px;'>Весна прийшла у наше село.</p>";
+    echo "<p class='poem-indent-1'>У саду цвітуть <b>вишні</b> білі,</p>";
+    echo "<p class='poem-indent-1'>Бджоли гудуть <i>весело</i> навколо,</p>";
+    echo "<p class='poem-indent-1'>Пелюстки падають несміливі,</p>";
+    echo "<p class='poem-indent-1'>Весна прийшла у наше село.</p>";
     ?>
 </div>
 <?php
