@@ -1,12 +1,7 @@
 /**
  * Shared styles for all demo task files
- * Imports base.css for CSS variables
+ * base.css is loaded via <link> in PHP templates (paths.php helper)
  */
-
-/* Import global base styles (includes CSS variables) */
-@import 'shared/css/base.css';
-
-/* Base body styles - inherits full-height layout from base.css */
 
 /* Back button */
 .back-button {
@@ -195,6 +190,30 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+/* ===== Utility: margin-top ===== */
+.mt-10 { margin-top: 10px; }
+.mt-15 { margin-top: 15px; }
+.mt-20 { margin-top: 20px; }
+
+/* ===== Result variant: commission highlight ===== */
+.result-commission {
+  background: #d1fae5;
+}
+
+/* ===== Shapes container ===== */
+.shapes-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+.shapes-container--black { background: black; }
+.shapes-container--gray { background: #374151; overflow: hidden; }
+
+/* ===== Task 7.1: Info text light ===== */
+.info-light {
+  color: rgba(255, 255, 255, 0.8);
 }
 
 /* ===== Task 7.1: Chessboard ===== */
