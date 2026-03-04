@@ -33,7 +33,7 @@ function extractDirectory(string $path): string
 }
 
 // Вхідні дані (варіант 30)
-$path = $_POST['path'] ?? '/var/audio/podcasts/episode_42.mp3';
+$path = $_POST['path'] ?? 'C:\Work\Designs\layout.css';
 $submitted = isset($_POST['path']);
 
 $filename = extractFilename($path);
