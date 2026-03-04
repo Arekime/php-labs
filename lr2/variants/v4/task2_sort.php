@@ -2,7 +2,7 @@
 /**
  * Завдання 2: Сортування міст у зворотному порядку
  *
- * Варіант 30 (група C): rsort — зворотно за алфавітом
+ * Варіант 4 (група C): rsort — зворотно за алфавітом
  */
 require_once __DIR__ . '/layout.php';
 
@@ -16,10 +16,10 @@ function sortCitiesReverse(string $input): array
     return $cities;
 }
 
-// Вхідні дані (варіант 30)
+// Вхідні дані (варіант 4)
 $input = $_POST['cities'] ?? '';
 $submitted = isset($_POST['cities']);
-$defaultCities = 'Краматорськ Ладижин Бердянськ Шепетівка Новомосковськ Ромни Генічеськ Трускавець';
+$defaultCities = 'Львів Чернівці Тернопіль Калуш Стрий Коломия Дрогобич Трускавець';
 
 if (!$submitted) {
     $input = $defaultCities;
