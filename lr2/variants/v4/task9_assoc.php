@@ -27,13 +27,12 @@ function sortBySalary(array $employees): array
 
 // Дані (варіант 30)
 $employees = [
-    'Микола' => 44000,
-    'Жанна' => 67500,
-    'Ростислав' => 31000,
-    'Тамара' => 58000,
-    'Юрій' => 22000,
-    'Елла' => 75000,
-    'Захар' => 40000,
+    "Вікторія" => 27,
+      "Ігор" => 39,
+      "Лариса" => 55,
+      "Максим" => 21,
+      "Надія" => 48,
+      "Степан" => 32,
 ];
 
 // Обробка
@@ -53,7 +52,7 @@ ob_start();
         </form>
         <form method="post">
             <input type="hidden" name="sort" value="salary">
-            <button type="submit" class="<?= $sortBy === 'salary' ? 'btn-submit' : 'btn-secondary' ?>">За зарплатою</button>
+            <button type="submit" class="<?= $sortBy === 'salary' ? 'btn-submit' : 'btn-secondary' ?>">За віком</button>
         </form>
     </div>
 
@@ -73,7 +72,7 @@ ob_start();
                 <tr>
                     <th>#</th>
                     <th>Ім'я <?= $sortBy === 'name' ? '&#8593;' : '' ?></th>
-                    <th>Зарплата <?= $sortBy === 'salary' ? '&#8593;' : '' ?></th>
+                    <th>Вік <?= $sortBy === 'salary' ? '&#8593;' : '' ?></th>
                 </tr>
             </thead>
             <tbody>
@@ -81,7 +80,7 @@ ob_start();
                 <tr>
                     <td><?= $i++ ?></td>
                     <td><?= htmlspecialchars($name) ?></td>
-                    <td><span class="demo-tag demo-tag-success"><?= number_format($salary, 0, '', ' ') ?> ₴</span></td>
+                    <td><span class="demo-tag demo-tag-success"><?= number_format($salary, 0, '', ' ') ?> </span></td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
