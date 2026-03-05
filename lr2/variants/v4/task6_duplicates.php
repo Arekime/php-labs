@@ -2,8 +2,7 @@
 /**
  * Завдання 6: Найчастіший елемент (мода)
  *
- * Варіант 30 (група C): мода замість дублікатів
- * Масив: [1, 4, 1, 1, 6, 1, 3, 1, 9, 7, 1] → 1 (6 разів)
+ * Варіант 4 (група C): мода замість дублікатів
  */
 require_once __DIR__ . '/layout.php';
 
@@ -25,8 +24,8 @@ function findMode(array $arr): ?array
     return ['value' => $modeValue, 'count' => $maxCount];
 }
 
-// Обробка форми (варіант 30)
-$input = $_POST['array'] ?? '1, 4, 1, 1, 6, 1, 3, 1, 9, 7, 1';
+// Обробка форми (варіант 4)
+$input = $_POST['array'] ?? '14, 6, 10, 14, 22, 6, 18, 10, 25, 22';
 $submitted = isset($_POST['array']);
 
 $arr = array_map('trim', explode(',', $input));
