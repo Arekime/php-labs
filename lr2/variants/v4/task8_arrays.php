@@ -2,20 +2,20 @@
 /**
  * Завдання 8: Операції з масивами
  *
- * Варіант 30 (група C): array_intersect + sort ascending
- * createArray(): довжина 3-6, значення 10-30
+ * Варіант 4 (група C): array_intersect + sort ascending
+ * createArray(): довжина 3-7, значення 10-20
  */
 require_once __DIR__ . '/layout.php';
 
 /**
- * Створює масив випадкової довжини (3-6) з випадковими значеннями (10-30)
+ * Створює масив випадкової довжини (3-7) з випадковими значеннями (10-20)
  */
 function createArray(): array
 {
-    $length = random_int(3, 6);
+    $length = random_int(3, 7);
     $arr = [];
     for ($i = 0; $i < $length; $i++) {
-        $arr[] = random_int(10, 30);
+        $arr[] = random_int(10, 20);
     }
     return $arr;
 }
@@ -30,7 +30,7 @@ function intersectSorted(array $a, array $b): array
     return array_values($common);
 }
 
-// Генеруємо масиви (варіант 30)
+// Генеруємо масиви (варіант 4)
 $arr1 = createArray();
 $arr2 = createArray();
 
