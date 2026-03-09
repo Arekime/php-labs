@@ -1,6 +1,6 @@
 <?php
 /**
- * Variant 30 Index Page — LR3 (OOP)
+ * Variant 4 Index Page — LR3 (OOP)
  */
 
 require_once dirname(__DIR__, 3) . '/shared/templates/task_cards.php';
@@ -19,7 +19,7 @@ $demoUrl = '/lr3/demo/index.php?from=v30';
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title>Варіант 30 — ЛР3</title>
+    <title>Варіант 4 — ЛР3</title>
     <link rel="stylesheet" href="<?= webPath(dirname(__DIR__, 3) . '/shared/css/base.css') ?>">
     <link rel="stylesheet" href="<?= webPath(dirname(__DIR__, 2) . '/demo/demo.css') ?>">
 </head>
@@ -30,12 +30,12 @@ $demoUrl = '/lr3/demo/index.php?from=v30';
         </div>
         <div class="header-center"></div>
         <div class="header-right">
-            Варіант 30 ЛР3
+            Варіант 4 ЛР3
         </div>
     </header>
 
     <h1 class="index-title">
-        Варіант 30
+        Варіант 4
         <br><span class="index-subtitle">ООП: класи, об'єкти, конструктори, клонування</span>
     </h1>
 
