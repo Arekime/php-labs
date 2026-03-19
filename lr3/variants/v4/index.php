@@ -1,6 +1,6 @@
 <?php
 /**
- * Variant 30 Index Page — LR3 (OOP)
+ * Variant 4 Index Page — LR3 (OOP)
  */
 
 require_once dirname(__DIR__, 3) . '/shared/templates/task_cards.php';

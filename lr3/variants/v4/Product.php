@@ -1,24 +1,24 @@
 <?php
 /**
- * Клас Product — модель товару
+ * Клас Athlete — модель спортсмена
  *
- * Використовується у всіх завданнях ЛР3 (варіант 30).
+ * Використовується у всіх завданнях ЛР3 (варіант ).
  */
 
-class Product
+class Athlete
 {
     public string $name;
-    public float $price;
-    public string $category;
+    public int $rating;
+    public string $sport;
 
     /**
      * Конструктор — задає початкові значення властивостей
      */
-    public function __construct(string $name = '', float $price = 0.0, string $category = '')
+    public function __construct(string $name = '', int $rating = 0, string $sport = '')
     {
         $this->name = $name;
-        $this->price = $price;
-        $this->category = $category;
+        $this->rating = $rating;
+        $this->sport = $sport;
     }
 
     /**
@@ -26,7 +26,7 @@ class Product
      */
     public function getInfo(): string
     {
-        return "Товар: {$this->name}, Ціна: {$this->price} грн, Категорія: {$this->category}";
+        return "Товар: {$this->name}, Рейтинг: {$this->rating}, Спорт: {$this->sport}";
     }
 
     /**
@@ -34,8 +34,8 @@ class Product
      */
     public function __clone(): void
     {
-        $this->name = 'Новий товар';
-        $this->price = 0.0;
-        $this->category = 'Без категорії';
+        $this->name = 'Новий спортсмен';
+        $this->rating = 0;
+        $this->sport = 'Без спорту';
     }
 }

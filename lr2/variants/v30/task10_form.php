@@ -111,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // Для автозаповнення
 $formData = [
-    'login' => $_POST['login'] ?? $sessionData['login'] ?? 'teacher_math',
+    'login' => $_POST['login'] ?? $sessionData['login'] ?? 'hetman_ivan',
     'gender' => $_POST['gender'] ?? $sessionData['gender'] ?? '',
     'city' => $_POST['city'] ?? $sessionData['city'] ?? '',
     'hobbies' => $_POST['hobbies'] ?? $sessionData['hobbies'] ?? [],

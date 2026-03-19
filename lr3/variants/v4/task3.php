@@ -2,15 +2,15 @@
 /**
  * Завдання 3: Конструктор
  *
- * Варіант 30: конструктор задає початкові значення name, price, category
+ * Варіант 4: конструктор задає початкові значення name, rating, sport
  */
 require_once __DIR__ . '/layout.php';
 require_once __DIR__ . '/Product.php';
 
 // Створюємо 3 об'єкти через конструктор
-$product1 = new Product('Ноутбук ASUS', 32500.00, 'Електроніка');
-$product2 = new Product('Кросівки Nike', 4200.00, 'Взуття');
-$product3 = new Product('Рюкзак Osprey', 6800.00, 'Аксесуари');
+$product1 = new Athlete('Дарія Білоус', 1520, 'Плавання');
+$product2 = new Athlete('Тарас Гнатюк', 1340, 'Легка атлетика');
+$product3 = new Athlete('Софія Приходько', 1680, 'Гімнастика');
 
 $products = [
     ['obj' => $product1, 'avatar' => 'avatar-indigo', 'initial' => 'Н', 'var' => '$product1'],
@@ -27,11 +27,11 @@ ob_start();
 </div>
 
 <div class="code-block"><span class="code-comment">// Конструктор класу Product</span>
-<span class="code-keyword">public function</span> <span class="code-method">__construct</span>(<span class="code-class">string</span> <span class="code-variable">$name</span>, <span class="code-class">float</span> <span class="code-variable">$price</span>, <span class="code-class">string</span> <span class="code-variable">$category</span>)
+<span class="code-keyword">public function</span> <span class="code-method">__construct</span>(<span class="code-class">string</span> <span class="code-variable">$name</span>, <span class="code-class">float</span> <span class="code-variable">$rating</span>, <span class="code-class">string</span> <span class="code-variable">$sport</span>)
 {
     <span class="code-variable">$this</span><span class="code-arrow">-></span><span class="code-method">name</span> = <span class="code-variable">$name</span>;
-    <span class="code-variable">$this</span><span class="code-arrow">-></span><span class="code-method">price</span> = <span class="code-variable">$price</span>;
-    <span class="code-variable">$this</span><span class="code-arrow">-></span><span class="code-method">category</span> = <span class="code-variable">$category</span>;
+    <span class="code-variable">$this</span><span class="code-arrow">-></span><span class="code-method">rating</span> = <span class="code-variable">$rating</span>;
+    <span class="code-variable">$this</span><span class="code-arrow">-></span><span class="code-method">sport</span> = <span class="code-variable">$sport</span>;
 }
 
 <span class="code-comment">// Створення через конструктор</span>
@@ -59,12 +59,12 @@ ob_start();
                 <span class="user-card-field-value"><?= htmlspecialchars($data['obj']->name) ?></span>
             </div>
             <div class="user-card-field">
-                <span class="user-card-field-label">price</span>
-                <span class="user-card-field-value"><?= $data['obj']->price ?> грн</span>
+                <span class="user-card-field-label">rating</span>
+                <span class="user-card-field-value"><?= $data['obj']->rating ?></span>
             </div>
             <div class="user-card-field">
-                <span class="user-card-field-label">category</span>
-                <span class="user-card-field-value"><?= htmlspecialchars($data['obj']->category) ?></span>
+                <span class="user-card-field-label">sport</span>
+                <span class="user-card-field-value"><?= htmlspecialchars($data['obj']->sport) ?></span>
             </div>
         </div>
     </div>
