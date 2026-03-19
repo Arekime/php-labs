@@ -14,10 +14,10 @@ class Athlete
     /**
      * Конструктор — задає початкові значення властивостей
      */
-    public function __construct(string $name = '', int $raiting = 0, string $sport = '')
+    public function __construct(string $name = '', int $rating = 0, string $sport = '')
     {
         $this->name = $name;
-        $this->rating = $raiting;
+        $this->rating = $rating;
         $this->sport = $sport;
     }
 
