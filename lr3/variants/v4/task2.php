@@ -8,20 +8,20 @@ require_once __DIR__ . '/layout.php';
 require_once __DIR__ . '/Product.php';
 
 // Створюємо 3 об'єкти
-$product1 = new Product();
-$product1->name = 'Ноутбук ASUS';
-$product1->price = 32500.00;
-$product1->category = 'Електроніка';
+$product1 = new Athlete();
+$product1->name = 'Дарія Білоус';
+$product1->rating = 1520;
+$product1->sport = 'Плавання';
 
-$product2 = new Product();
-$product2->name = 'Кросівки Nike';
-$product2->price = 4200.00;
-$product2->category = 'Взуття';
+$product2 = new Athlete();
+$product2->name = 'Тарас Гнатюк';
+$product2->rating = 1340;
+$product2->sport = 'Легка атлетика';
 
-$product3 = new Product();
-$product3->name = 'Рюкзак Osprey';
-$product3->price = 6800.00;
-$product3->category = 'Аксесуари';
+$product3 = new Athlete();
+$product3->name = 'Софія Приходько';
+$product3->rating = 1680;
+$product3->sport = 'Гімнастика';
 
 $products = [$product1, $product2, $product3];
 $labels = ['$product1', '$product2', '$product3'];
@@ -37,7 +37,7 @@ ob_start();
 <div class="code-block"><span class="code-comment">// Метод getInfo() повертає рядок з інформацією</span>
 <span class="code-keyword">public function</span> <span class="code-method">getInfo</span>(): <span class="code-class">string</span>
 {
-    <span class="code-keyword">return</span> <span class="code-string">"Товар: {$this->name}, Ціна: {$this->price} грн, Категорія: {$this->category}"</span>;
+    <span class="code-keyword">return</span> <span class="code-string">"Атлет: {$this->name}, Рейтинг: {$this->rating}, Спорт: {$this->sport}"</span>;
 }
 
 <span class="code-comment">// Виклик для кожного об'єкта</span>
@@ -83,12 +83,12 @@ ob_start();
                 <span class="user-card-field-value"><?= htmlspecialchars($product->name) ?></span>
             </div>
             <div class="user-card-field">
-                <span class="user-card-field-label">price</span>
-                <span class="user-card-field-value"><?= $product->price ?> грн</span>
+                <span class="user-card-field-label">raiting</span>
+                <span class="user-card-field-value"><?= $product->rating ?></span>
             </div>
             <div class="user-card-field">
-                <span class="user-card-field-label">category</span>
-                <span class="user-card-field-value"><?= htmlspecialchars($product->category) ?></span>
+                <span class="user-card-field-label">sport</span>
+                <span class="user-card-field-value"><?= htmlspecialchars($product->sport) ?></span>
             </div>
         </div>
     </div>
