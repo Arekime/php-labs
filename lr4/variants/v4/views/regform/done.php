@@ -5,8 +5,8 @@ $regData = $regData ?? [];
 <div class="success-page">
     <div class="alert alert--success">
         <h2>Реєстрація успішна!</h2>
-        <p>Ласкаво просимо до кулінарного блогу, <strong><?= htmlspecialchars($regData['login'] ?? '') ?></strong>!</p>
-        <p>Тепер ви можете зберігати улюблені рецепти та залишати коментарі.</p>
+        <p>Ласкаво просимо до піцерії, <strong><?= htmlspecialchars($regData['login'] ?? '') ?></strong>!</p>
+        <p>Тепер ви можете зберігати улюблені начинки до піцци та залишати коментарі.</p>
     </div>
 
     <div class="success-page__actions">

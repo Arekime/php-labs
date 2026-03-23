@@ -3,18 +3,12 @@
 class SettingsController extends PageController
 {
     private array $availableColors = [
-        '#FFF8E1' => 'Ваніль',
-        '#E8F5E9' => 'М\'ятний',
-        '#FFCDD2' => 'Полуничний',
-        '#BBDEFB' => 'Чорничний',
-        '#E1BEE7' => 'Лавандовий',
+        '#FFE4E1' => 'Томатний',
+        '#FFFACD' => 'Сирний жовтий',
+        '#F5DEB3' => 'Тістовий',
+        '#E8F5E9' => 'Базиліковий',
+        '#F0FFF0' => 'Оливковий',
         '#C8E6C9' => 'Базилік',
-        '#FFAB91' => 'Гарбузовий',
-        '#B2EBF2' => 'Крижаний',
-        '#F0F4C3' => 'Лимонний',
-        '#D7CCC8' => 'Какао',
-        '#CFD8DC' => 'Сталевий',
-        '#FFFFFF' => 'Білий',
     ];
 
     public function action_color(): void

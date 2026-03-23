@@ -12,7 +12,7 @@ $method = $method ?? 'GET';
         <p>Надішліть POST-запит з довільними даними:</p>
         <form method="POST" action="index.php?route=reqview/showrequest&source=form" class="form">
             <div class="form__group">
-                <label for="post_recipe" class="form__label">Назва рецепту</label>
+                <label for="post_recipe" class="form__label">Назва піцци</label>
                 <input type="text" id="post_recipe" name="recipe" class="form__input" placeholder="Борщ">
             </div>
             <div class="form__group">

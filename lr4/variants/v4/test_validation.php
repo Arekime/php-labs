@@ -1,6 +1,6 @@
 <?php
 /**
- * Automated test for v30 RegformController validation.
+ * Automated test for v4 RegformController validation.
  * Run: php test_validation.php
  */
 
