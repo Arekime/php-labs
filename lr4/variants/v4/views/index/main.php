@@ -1,6 +1,6 @@
 <div class="page-home">
     <h1>Піцерія</h1>
-    <p class="page-home__subtitle">Ласкаво просимо до піцерії! Тут ви знайдете рецепти, поради та кулінарне натхнення.</p>
+    <p class="page-home__subtitle">Ласкаво просимо до піцерії!</p>
 
     <div class="card-grid">
         <div class="card">
@@ -20,9 +20,9 @@
         </div>
 
         <div class="card">
-            <h3 class="card__title">Параметри запиту</h3>
+            <h3 class="card__title">Меню піццерії та замовлення</h3>
             <p class="card__text">
-                Технічна сторінка для перегляду GET та POST параметрів запиту.
+                Технічна сторінка для перегляду меню піцерії.
             </p>
             <a href="index.php?route=reqview/showrequest" class="btn btn--small">Перейти</a>
         </div>
